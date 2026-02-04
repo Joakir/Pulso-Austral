@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Emprendimiento</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; }
+        button { margin-top: 20px; padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+    <h1>Sumar un Emprendimiento</h1>
+    
+    <form action="/crear" method="POST">
+        
+        <label>Nombre del Emprendimiento:</label>
+        <input type="text" name="nombre_form" required placeholder="Ej: Panadería El Fueguino">
+
+        <label>Descripción:</label>
+        <textarea name="descripcion_form" placeholder="¿Qué ofreces?"></textarea>
+
+        <label for="contacto_id">Contacto (Instagram/WhatsApp):</label>
+            <input type="text" name="contacto_form" id="contacto_id" required placeholder="Ej: @usuario">
+
+            <label for="zona_id">Zona:</label>
+            <select name="zona_form" id="zona_id">
+                <option value="Centro">Centro</option>
+                <option value="Chacra II">Chacra II</option>
+                <option value="Chacra XIII">Chacra XIII</option>
+                <option value="Margen Sur">Margen Sur</option>
+                <option value="Intevu">Intevu</option>
+            </select>
+
+            <label for="rubro_id">Rubro:</label>
+            <select name="rubro_id_form" id="rubro_id">
+                {% for rubro in lista_rubros %}
+                    <option value="{{ rubro.id }}">{{ rubro.nombre }}</option>
+                {% endfor %}
+            </select>
+
+                <button type="submit">Guardar Emprendimiento</button>
+            </form>
+
+    <br>
+    <a href="/">Volver al Inicio</a>
+
+</body>
+</html>

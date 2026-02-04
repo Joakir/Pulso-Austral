@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulso Austral</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        .rubro { color: #666; font-size: 0.9em; font-weight: bold; }
+        .zona { color: #007bff; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <h1>Pulso Austral - Río Grande</h1>
+    <a href="/crear" style="background: #007bff; color: white; padding: 10px; text-decoration: none; border-radius: 5px;">+ Agregar Emprendimiento</a>
+    <br><br>
+    <p>Conectando emprendedores locales.</p>
+
+    <h2>Emprendimientos Registrados:</h2>
+
+    {% for negocio in lista_emprendimientos %}
+        <div class="card">
+            <h3>{{ negocio.nombre }}</h3>
+            <p>{{ negocio.descripcion }}</p>
+            <p>
+                <span class="rubro">Rubro: {{ negocio.categoria.nombre }}</span> | 
+                <span class="zona">📍 {{ negocio.zona }}</span>
+            </p>
+            <small>Contacto: {{ negocio.contacto }}</small>
+            <a href="/borrar/{{ negocio.id }}" 
+            style="color: red; text-decoration: none; margin-left: 10px;"
+            onclick="return confirm('¿Estás seguro de que quieres borrar este emprendimiento? No hay vuelta atrás.')">
+            🗑️ Eliminar
+            </a>
+        </div>
+    {% else %}
+        <p>No hay emprendimientos cargados todavía.</p>
+    {% endfor %}
+
+</body>
+</html>
